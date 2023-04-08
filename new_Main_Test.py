@@ -884,6 +884,7 @@ class Ui_MainWindow(object):
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout_5.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
@@ -892,6 +893,7 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.frame_2)
+        self.horizontalLayout_3.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
@@ -951,14 +953,20 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentWidget(self.upload_data_panel)
     def open_Delete_Data(self,MainWindow):
         self.stackedWidget.setCurrentWidget(self.edit_data_panel)
+
     def openNewUser(self, MainWindow):
         #MainWindow.setWindowFlags(Qt.FramelessWindowHint)
         #MainWindow.setWindowFlags(self.defaultWindowFlags)
-        MainWindow.setMaximumSize(QtCore.QSize(99900, 55099))
-        self.centralwidget.setMaximumSize(QtCore.QSize(99900, 55099))
-        self.frame.setGeometry(0,0,self.centralwidget.height(),self.centralwidget.width())
-        self.frame.setMaximumSize(QtCore.QSize(99900, 55099))
-        MainWindow.setWindowFlags(QtCore.Qt.WindowType.CustomizeWindowHint | QtCore.Qt.WindowType.WindowCloseButtonHint | QtCore.Qt.WindowType.WindowMinimizeButtonHint |QtCore.Qt.WindowType.WindowMaximizeButtonHint) 
+
+        screen_width = QDesktopWidget().screenGeometry().width()
+        screen_height = QDesktopWidget().screenGeometry().height()
+
+        #MainWindow.setMaximumSize(QtCore.QSize(99900, 55099))
+        MainWindow.setMinimumSize(QtCore.QSize(screen_width-50, screen_height-100))
+        MainWindow.setMaximumSize(QtCore.QSize(screen_width-50, screen_height-100))
+        self.centralwidget.setMinimumSize(QtCore.QSize(screen_width-50, screen_height-100))
+        #self.frame.setGeometry(0,0,self.centralwidget.height(),self.centralwidget.width())
+        self.frame.setMinimumSize(QtCore.QSize(screen_width-50, screen_height-100))
         # MainWindow.setMinimumSize(QtCore.QSize(300, 250))
         # MainWindow.setMaximumSize(QtCore.QSize(10000, 10550))
         # self.centralwidget.setMinimumSize(QtCore.QSize(900, 550))
@@ -968,6 +976,8 @@ class Ui_MainWindow(object):
         
         # self.frame.setMinimumSize(QtCore.QSize(self.centralwidget.height(),self.centralwidget.width()))
         #MainWindow.stackedWidget.setCurrentWidget(MainWindow.stackedWidget.use_app)
+
+        #MainWindow.setWindowFlags(QtCore.Qt.WindowType.CustomizeWindowHint | QtCore.Qt.WindowType.WindowCloseButtonHint | QtCore.Qt.WindowType.WindowMinimizeButtonHint |QtCore.Qt.WindowType.WindowMaximizeButtonHint) 
         self.stackedWidget.setCurrentWidget(self.use_app)
         MainWindow.show()
 
